@@ -5,7 +5,8 @@
 }
 
 .mainIndex{
-    margin-top: 50vh;
+  margin-top: 25vh;
+  height: 100vh;
 }
 .navIndex{
     background-color: rgb(155, 252, 155);
@@ -113,4 +114,5 @@
     margin: 30px;
     padding: 30px;
     text-align: center;
+    width: 100%;
   }
