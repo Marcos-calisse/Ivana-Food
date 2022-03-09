@@ -14,21 +14,28 @@ const carritoDeCompras = (producto, precio, cantidadPedido) =>{
 }
 
 
-let nombreUsuario = prompt("Ingresa tu usuario");
-let contrasenia = prompt("Ingresa tu contraseña");
-let email = prompt("Ingresa tu emmail");
-
-validarUsuario();
-
 // Funcion login
 
+let nombreUsuario = prompt("Ingresa tu usuario");
+let contrasenia = parseInt(prompt("Ingresa tu contraseña"));
+let email = prompt("Ingresa tu emmail");
+
 const validarUsuario = (nombreUsuario, contrasenia, email) => {
-    if (nombreUsuario === "Marcos" && contrasenia === 12345 && email === "mcalisse@gmail.com" ){
+    if (nombreUsuario == "Marcos" && contrasenia == 12345 && email == "mcalisse@gmail.com" ){
         alert(`Bienvenido ${nombreUsuario}`)
     }else{
         alert(`Vuelve a intentarlo`)
     }
 }
+
+
+
+
+
+
+
+
+validarUsuario();
 
 carritoDeCompras("lomos", lomos, 2);
 
