@@ -10,7 +10,7 @@ const carritoDeCompras = (producto, precio, cantidadPedido) =>{
     
     let resultado = precio * cantidadPedido;
 
-    console.log(`Elegiste ${cantidadPedido} ${producto} por un total de ${resultado}`)
+    //console.log(`Elegiste ${cantidadPedido} ${producto} por un total de ${resultado}`)
 }
 
 
@@ -38,4 +38,17 @@ const validarUsuario = (nombreUsuario, contrasenia, email) => {
 validarUsuario();
 
 carritoDeCompras("lomos", lomos, 2);
+
+
+// array de productos
+
+
+const listaProductos = [
+    {id: 1, nombre: "pachata", precio: 600},
+    {id: 2, nombre: "lomo", precio: 800},
+    {id: 3, nombre: "hamburguesa", precio: 400}
+];
+
+
+console.log(listaProductos);
 
