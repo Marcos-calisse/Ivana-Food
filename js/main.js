@@ -42,13 +42,26 @@ carritoDeCompras("lomos", lomos, 2);
 
 // array de productos
 
+class Productos{
+    constructor (id, nombre, precio, stock){
+        this.id = id;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.stock = stock;
+    }
+    
+    
+}
+
+const nuevoProducto = new Productos ( 4,"papas fritas", 250, 10);
 
 const listaProductos = [
-    {id: 1, nombre: "pachata", precio: 600},
-    {id: 2, nombre: "lomo", precio: 800},
-    {id: 3, nombre: "hamburguesa", precio: 400}
+    {id: 1, nombre: "pachata", precio: 600, stock: 10},
+    {id: 2, nombre: "lomo", precio:800, stock: 10},
+    {id: 3, nombre: "hamburguesa", precio: 400, stock: 10}
 ];
 
+listaProductos.push(nuevoProducto);
 
 console.log(listaProductos);
 
