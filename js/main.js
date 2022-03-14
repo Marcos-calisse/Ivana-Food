@@ -1,53 +1,53 @@
-let pachatas = 600;
-let lomos = 800;
-let Hamburguesas = 400;
+// let pachatas = 600;
+// let lomos = 800;
+// let Hamburguesas = 400;
 
 
 // Funcion carrito de compras
 
 
-const carritoDeCompras = (producto, precio, cantidadPedido) =>{
+// const carritoDeCompras = (producto, precio, cantidadPedido) =>{
     
-    let resultado = precio * cantidadPedido;
+//     let resultado = precio * cantidadPedido;
 
-    console.log(`Elegiste ${cantidadPedido} ${producto} por un total de ${resultado}`)
-}
+//     //console.log(`Elegiste ${cantidadPedido} ${producto} por un total de ${resultado}`)
+// }
 
 
 // Funcion login
 
-let nombreUsuario = prompt("Ingresa tu usuario");
-let contrasenia = parseInt(prompt("Ingresa tu contraseña"));
-let email = prompt("Ingresa tu emmail");
+// let nombreUsuario = prompt("Ingresa tu usuario");
+// let contrasenia = parseInt(prompt("Ingresa tu contraseña"));
+// let email = prompt("Ingresa tu emmail");
 
-const validarUsuario = (nombreIngresado, contrasenia, email) => {
-    if (nombreIngresado == "Marcos" && contrasenia == 12345 && email == "mcalisse@gmail.com" ){
-        alert(`Bienvenido ${nombreUsuario}`)
-    }else{
-        alert(`Vuelve a intentarlo`)
-    }
-}
+// const validarUsuario = (nombreIngresado, contrasenia, email) => {
+//     if (nombreIngresado == "Marcos" && contrasenia == 12345 && email == "mcalisse@gmail.com" ){
+//         alert(`Bienvenido ${nombreUsuario}`)
+//     }else{
+//         alert(`Vuelve a intentarlo`)
+//     }
+// }
 
 
 
-validarUsuario();
+//validarUsuario(nombreUsuario, contrasenia, email);
 
-carritoDeCompras("lomos", lomos, 2);
+//carritoDeCompras("lomos", lomos, 2);
 
 
 // Objeto constructor
 
-class Productos{
-    constructor (id, nombre, precio, stock){
-        this.id = id;
-        this.nombre = nombre;
-        this.precio = precio;
-        this.stock = stock;
-    }
+// class Productos{
+//     constructor (id, nombre, precio, stock){
+//         this.id = id;
+//         this.nombre = nombre;
+//         this.precio = precio;
+//         this.stock = stock;
+//     }
     
-}
+// }
+// const nuevoProducto = new Productos ( 4,"papas fritas", 250, 10);
 
-const nuevoProducto = new Productos ( 4,"papas fritas", 250, 10);
 
 
 // array de productos
@@ -71,6 +71,19 @@ const listaProductos = [
     }
 ];
 
+const carrito = [];
+
+function agregarAlCarrito(producto){
+    carrito.push(producto)
+}
+
+agregarAlCarrito(listaProductos[1]);
+
+
+
+console.log(carrito);
+
+
 
 listaProductos.push({id: 4, nombre: "papas fritas", precio: 250, stock: 10}); // agrega objeto al array
 console.log(listaProductos);
@@ -81,5 +94,8 @@ listaProductos.pop();                  // elimina el ultimo indice del array
 console.log(listaProductos);
 
 listaProductos.reverse();              // da vuelta el array
+console.log(listaProductos);
+
+listaProductos.splice(1, 1);           // Borra el elemento siguiente al indicado en el primer parametro
 console.log(listaProductos);
 
