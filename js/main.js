@@ -23,9 +23,9 @@ const agregarAlCarrito = (producto) =>{
 
 // Funcion login
 
-let nombreUsuario = prompt("Ingresa tu usuario");
-let contrasenia = parseInt(prompt("Ingresa tu contraseña"));
-let email = prompt("Ingresa tu emmail");
+// let nombreUsuario = prompt("Ingresa tu usuario");
+// let contrasenia = parseInt(prompt("Ingresa tu contraseña"));
+// let email = prompt("Ingresa tu emmail");
 
 const validarUsuario = (nombreIngresado, contrasenia, email) => {
     if (nombreIngresado == "Marcos" && contrasenia == 12345 && email == "mcalisse@gmail.com" ){
@@ -37,7 +37,7 @@ const validarUsuario = (nombreIngresado, contrasenia, email) => {
 
 
 
-validarUsuario(nombreUsuario, contrasenia, email);
+// validarUsuario(nombreUsuario, contrasenia, email);
 
 
 
@@ -64,17 +64,20 @@ const listaProductos = [
     {id: 1,
      nombre: "pachata", 
      precio: 600, 
-     stock: 10
+     stock: 10,
+     img: src="js/multimedia/pachata,jpeg"
     },
     {id: 2, 
      nombre: "lomo", 
      precio:800, 
-     stock: 10
+     stock: 10,
+    img: src="js/multimedia/lomo-ivana,jpeg" 
     },
     {id: 3, 
      nombre: "hamburguesa", 
      precio: 400, 
-     stock: 10
+     stock: 10,
+     img: src="js/multimedia/hamburguesa,jpeg"
     }
 ];
 
@@ -83,8 +86,23 @@ listaProductos.push({id: 4, nombre: "papas fritas", precio: 250, stock: 10}); //
 
 agregarAlCarrito(listaProductos[1]);
 
-console.log(listaProductos);
-console.log(carrito)
+const generarCards = () =>{
+    const cardGeneradas = document.querySelector("#cards");
+    listaProductos.forEach(
+        
+        cardGeneradas.innerHTML = `
+            <img src="${listaProductos.img}" class="card-img-top" alt="Lomo">
+            <div class="card-body">
+              <h5 class="card-title">${listaProductos.nombre}</h5>
+              <p class="card-text">$ ${listaProductos.precio}</p>
+              <button>Comprar</button>
+            </div>
+    `
+    )
+    
+    
 
+}
+generarCards()
 
 
