@@ -36,9 +36,7 @@ const validarUsuario = (nombreIngresado, contrasenia, email) => {
 }
 
 
-
 // validarUsuario(nombreUsuario, contrasenia, email);
-
 
 
 
@@ -84,25 +82,22 @@ const listaProductos = [
 listaProductos.push({id: 4, nombre: "papas fritas", precio: 250, stock: 10}); // agrega objeto al array
 
 
-agregarAlCarrito(listaProductos[1]);
+agregarAlCarrito();
 
-const generarCards = () =>{
-    const cardGeneradas = document.querySelector("#cards");
-    listaProductos.forEach(
-        
-        cardGeneradas.innerHTML = `
-            <img src="${listaProductos.img}" class="card-img-top" alt="Lomo">
-            <div class="card-body">
-              <h5 class="card-title">${listaProductos.nombre}</h5>
-              <p class="card-text">$ ${listaProductos.precio}</p>
-              <button>Comprar</button>
-            </div>
-    `
-    )
-    
-    
+// let cardsGeneradas = ``;
 
-}
-generarCards()
+// listaProductos.forEach(elementoDelArray => {
+//   cardsGeneradas += `<div class="card">
+//                         <div class="card-header">
+//                             ${elementoDelArray.nombre}
+//                         </div>
+//                         <div class="card-body">
+//                             <h5 class="card-title">$ ${elementoDelArray.precio}</h5>
+//                             <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+//                             <a href="#" class="btn btn-primary" onclick="agregarAlCarrito()">Go somewhere</a>
+//                         </div>
+//                     </div>`;
+// })
 
+// document.getElementById("cards");
 
