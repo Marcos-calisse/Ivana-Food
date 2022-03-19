@@ -23,9 +23,9 @@ const agregarAlCarrito = (producto) =>{
 
 // Funcion login
 
-let nombreUsuario = prompt("Ingresa tu usuario");
-let contrasenia = parseInt(prompt("Ingresa tu contraseña"));
-let email = prompt("Ingresa tu emmail");
+// let nombreUsuario = prompt("Ingresa tu usuario");
+// let contrasenia = parseInt(prompt("Ingresa tu contraseña"));
+// let email = prompt("Ingresa tu emmail");
 
 const validarUsuario = (nombreIngresado, contrasenia, email) => {
     if (nombreIngresado == "Marcos" && contrasenia == 12345 && email == "mcalisse@gmail.com" ){
@@ -35,23 +35,47 @@ const validarUsuario = (nombreIngresado, contrasenia, email) => {
     }
 }
 
-
-validarUsuario(nombreUsuario, contrasenia, email);
-
+//validarUsuario(nombreUsuario, contrasenia, email);
 
 
-// Objeto constructor
+// Funcion genedora de cards
 
-class Productos{
-    constructor (id, nombre, precio, stock){
-        this.id = id;
-        this.nombre = nombre;
-        this.precio = precio;
-        this.stock = stock;
-    }
+function generarCards(productos){
+    let acumuladorDeCards = ``;
+    productos.forEach((producto)=>{
+        acumuladorDeCards += `<div class="card" style="width: 18rem;">
+        <img src="${producto.imagen}" class="card-img-top" alt="...">
+        <div class="card-body">
+        <h5 class="card-title">${producto.nombre}</h5>
+        <p class="card-text">$ ${producto.precio}</p>
+          <a href="#" class="btn btn-primary">Comprar</a>
+        </div>
+      </div>`;
+    });
+    imprimirCardsEnHTML(acumuladorDeCards)
+}
+
+// Funcion mostrar cards
+
+function imprimirCardsEnHTML(cards){
+    document.getElementById("cards").innerHTML = cards ;
+}
+
+function buscadorProductos () {
+    const productoEncontrado = document.getElementById("input").value.toLowercase();
     
 }
-const nuevoProducto = new Productos ( 4,"papas fritas", 250, 10);
+// Objeto constructor
+
+// class Productos{
+//     constructor (id, nombre, precio, stock){
+//         this.id = id;
+//         this.nombre = nombre;
+//         this.precio = precio;
+//         this.stock = stock;
+//     }
+    
+// }
 
 
 
@@ -60,28 +84,25 @@ const nuevoProducto = new Productos ( 4,"papas fritas", 250, 10);
 
 const listaProductos = [
     {id: 1,
-     nombre: "pachata", 
+     nombre: "Pachata", 
      precio: 600, 
      stock: 10,
-     
+     imagen: "/multimedia/pachata.jpeg"
     },
     {id: 2, 
-     nombre: "lomo", 
+     nombre: "Lomo", 
      precio:800, 
      stock: 10,
-    
+     imagen: "/multimedia/lomo-ivana.jpeg"
     },
     {id: 3, 
-     nombre: "hamburguesa", 
+     nombre: "Hamburguesa", 
      precio: 400, 
      stock: 10,
-     
+     imagen: "/multimedia/hamburguesa.jpeg"
     }
 ];
 
-listaProductos.push({id: 4, nombre: "papas fritas", precio: 250, stock: 10}); // agrega objeto al array
 
-
-agregarAlCarrito(listaProductos);
-
+generarCards(listaProductos);
 
