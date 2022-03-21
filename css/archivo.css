@@ -44,3 +44,6 @@
     width: 2em;
     height: 2em; 
 }
+.btn-primary{
+    background-color: red;
+}
