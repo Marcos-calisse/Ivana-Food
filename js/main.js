@@ -90,7 +90,7 @@ generarCards(listaProductos);
 
 function generarFormLogin (){
     const datosUsuario = document.getElementById("login");
-    datosUsuario.innerHTML = `<div class="contact__secction-container">
+    datosUsuario.innerHTML = `<form class="contact__secction-container">
     <div class="row">
       <div class="contact__secction__item">
         <label>Nombre Usuario</label>
@@ -108,7 +108,7 @@ function generarFormLogin (){
         <button type="button" class="btn btn-danger" onclick = "validarUsuario()">Ingresar</button>
       </div>
     </div>
-  </div>`;
+  </form>`;
 }
 
 
