@@ -65,11 +65,12 @@ const agregarAlCarrito = (producto) =>{
 function generarCards(productos){
     let acumuladorDeCards = ``;
     productos.forEach((producto)=>{
-        acumuladorDeCards += `<div class="card" style="width: 18rem;">
+      acumuladorDeCards += `
+      <div class="card" style="width: 18rem;">
         <img src="${producto.imagen}" class="card-img-top" alt="...">
         <div class="card-body">
-        <h5 class="card-title">${producto.nombre}</h5>
-        <p class="card-text">$ ${producto.precio}</p>
+          <h5 class="card-title">${producto.nombre}</h5>
+          <p class="card-text">$ ${producto.precio}</p>
           <button class="btn btn-primary" onclick="agregarAlCarrito(listaProductos)">Comprar</button>
         </div>
       </div>`;
@@ -89,24 +90,23 @@ generarCards(listaProductos);
 // Funcion login
 
 function generarFormLogin (){
-    const datosUsuario = document.getElementById("login");
-    datosUsuario.innerHTML = `<form class="contact__secction-container">
-    <div class="row">
-      <div class="contact__secction__item">
-        <label>Nombre Usuario</label>
-        <input type="text" id="nombre" placeholder="Ingresa tu usuario"/>
-      </div>
-      <div class="contact__secction__item">
-        <label>E-mail</label>
-        <input type="text" id="mail" placeholder="E-mail"/>
-      </div>
-      <div class="contact__secction__item">
-        <label>Contraseña</label>
-        <input type="password" id="contraseña" placeholder="Contraseña"/>
-      </div>
-      <div class="contact-button">
-        <button type="button" class="btn btn-danger" onclick = "validarUsuario()">Ingresar</button>
-      </div>
+  const datosUsuario = document.getElementById("login");
+  datosUsuario.innerHTML = `
+  <form>
+    <div>
+      <label>Nombre Usuario</label>
+      <input type="text" id="nombre" placeholder="Ingresa tu usuario"/>
+    </div>
+    <div>
+      <label>E-mail</label>
+      <input type="text" id="mail" placeholder="E-mail"/>
+    </div>
+    <div>
+      <label>Contraseña</label>
+      <input type="password" id="contraseña" placeholder="Contraseña"/>
+    </div>
+    <div>
+      <button type="button" class="btn btn-danger" onclick = "validarUsuario()">Ingresar</button>
     </div>
   </form>`;
 }
@@ -119,7 +119,7 @@ const validarUsuario = () => {
     const email = document.getElementById("mail").value.innerText;
     const contrasenia = document.getElementById("contraseña").value;
     
-    if (nombreIngresado === "Marcos" && contrasenia === 12345 && email === "mcalisse@gmail.com" ){
+    if (nombreIngresado === "Marcos" && contrasenia === parseInt(12345) && email === "mcalisse@gmail.com" ){
 
         alert(`Bienvenido ${nombreIngresado}`)
 
