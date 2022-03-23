@@ -1,6 +1,7 @@
 let pachatas = 600;
 let lomos = 800;
 let Hamburguesas = 400;
+
 const carrito = [];
 
 // Objeto constructor
@@ -19,30 +20,30 @@ const carrito = [];
 
 
 const listaProductos = [
-    {id: 1,
-     nombre: "Pachata", 
-     precio: 600, 
-     stock: 10,
-     imagen: "/multimedia/pachata.jpeg"
-    },
-    {id: 2, 
-     nombre: "Lomo", 
-     precio:800, 
-     stock: 10,
-     imagen: "/multimedia/lomo-ivana.jpeg"
-    },
-    {id: 3, 
-     nombre: "Hamburguesa", 
-     precio: 400, 
-     stock: 10,
-     imagen: "/multimedia/hamburguesa.jpeg"
-    },
-    {id: 4, 
-     nombre: "Papas fritas", 
-     precio: 250, 
-     stock: 10,
-     imagen: "http://c.files.bbci.co.uk/104B4/production/_103104766_gettyimages-957724442.jpg"
-    }
+  {id: 1,
+   nombre: "Pachata", 
+   precio: 600, 
+   stock: 10,
+   imagen: "https://images.deliveryhero.io/image/pedidosya/products/16480133-07c02758-51e5-48bc-848a-958de32372f0.jpeg?quality=90&width=248"
+  },
+  {id: 2, 
+   nombre: "Lomo", 
+   precio:800, 
+   stock: 10,
+   imagen: "https://www.circuitogastronomico.com/wp-content/uploads/2020/08/pizzar-lomo.jpg"
+  },
+  {id: 3, 
+   nombre: "Hamburguesa", 
+   precio: 400, 
+   stock: 10,
+   imagen: "https://okdiario.com/img/2021/05/28/hamburguesa-3-655x368.jpg"
+  },
+  {id: 4, 
+   nombre: "Papas fritas", 
+   precio: 250, 
+   stock: 10,
+   imagen: "http://c.files.bbci.co.uk/104B4/production/_103104766_gettyimages-957724442.jpg"
+  }
 ];
 
 // Funcion carrito de compras --> llamo la funcion desde el html
@@ -50,7 +51,7 @@ const listaProductos = [
 
 const carritoDeCompras = () =>{
     const totalDelCarrito = listaProductos.reduce((acumulador, producto) => acumulador + producto.precio, 0);
-    return totalDelCarrito;
+    carrito.innerHTML = totalDelCarrito
 }
 
 
@@ -71,7 +72,7 @@ function generarCards(productos){
         <div class="card-body">
           <h5 class="card-title">${producto.nombre}</h5>
           <p class="card-text">$ ${producto.precio}</p>
-          <button class="btn btn-primary" onclick="agregarAlCarrito(listaProductos)">Comprar</button>
+          <button class="btn btn-primary" onclick="agregarAlCarrito(() => {${producto.id}})">Comprar</button>
         </div>
       </div>`;
     });
@@ -95,15 +96,15 @@ function generarFormLogin (){
   <form>
     <div>
       <label>Nombre Usuario</label>
-      <input type="text" id="nombre" placeholder="Ingresa tu usuario"/>
+      <input type="text" id="nombre" placeholder="Ingrese usuario">
     </div>
     <div>
       <label>E-mail</label>
-      <input type="text" id="mail" placeholder="E-mail"/>
+      <input type="text" id="mail" placeholder="E-mail">
     </div>
     <div>
       <label>Contraseña</label>
-      <input type="password" id="contraseña" placeholder="Contraseña"/>
+      <input type="password" id="contraseña" placeholder="Contraseña">
     </div>
     <div>
       <button type="button" class="btn btn-danger" onclick = "validarUsuario()">Ingresar</button>
@@ -116,10 +117,10 @@ function generarFormLogin (){
 const validarUsuario = () => {
 
     const nombreIngresado = document.getElementById("nombre").value;
-    const email = document.getElementById("mail").value.innerText;
+    const email = document.getElementById("mail").value;
     const contrasenia = document.getElementById("contraseña").value;
     
-    if (nombreIngresado === "Marcos" && contrasenia === parseInt(12345) && email === "mcalisse@gmail.com" ){
+    if (nombreIngresado === "Marcos" && contrasenia === "12345" && email === "mcalisse@gmail.com" ){
 
         alert(`Bienvenido ${nombreIngresado}`)
 
