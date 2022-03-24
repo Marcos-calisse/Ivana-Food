@@ -50,15 +50,15 @@ const listaProductos = [
 
 
 const carritoDeCompras = () =>{
-    const totalDelCarrito = listaProductos.reduce((acumulador, producto) => acumulador + producto.precio, 0);
-    carrito.innerHTML = totalDelCarrito
+  const totalDelCarrito = listaProductos.reduce((acumulador, producto) => acumulador + producto.precio, 0);
+  carrito.innerHTML = totalDelCarrito
 }
 
 
 // Funcion agregar porductos al carrito como lista de productos
 
 const agregarAlCarrito = (producto) =>{
-    carrito.push(producto)
+  carrito.push(producto)
 }
 
 // Funcion genedora de cards
@@ -92,24 +92,36 @@ generarCards(listaProductos);
 
 function generarFormLogin (){
   const datosUsuario = document.getElementById("login");
-  datosUsuario.innerHTML = `
-  <form>
-    <div>
-      <label>Nombre Usuario</label>
-      <input type="text" id="nombre" placeholder="Ingrese usuario">
+  datosUsuario.innerHTML = `<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+          <label>Nombre Usuario</label>
+          <input type="text" id="nombre" placeholder="Ingrese usuario">
+          </div>
+          <div class="mb-3">
+          <label>E-mail</label>
+          <input type="text" id="mail" placeholder="E-mail">
+          </div>
+          <div class="mb-3">
+            <label>Contraseña</label>
+            <input type="password" id="contraseña" placeholder="Contraseña">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" onclick = "validarUsuario()">Ingresar</button>
+      </div>
     </div>
-    <div>
-      <label>E-mail</label>
-      <input type="text" id="mail" placeholder="E-mail">
-    </div>
-    <div>
-      <label>Contraseña</label>
-      <input type="password" id="contraseña" placeholder="Contraseña">
-    </div>
-    <div>
-      <button type="button" class="btn btn-danger" onclick = "validarUsuario()">Ingresar</button>
-    </div>
-  </form>`;
+  </div>
+ </div>
+ `;
 }
 
 
@@ -129,7 +141,7 @@ const validarUsuario = () => {
     }
 }
 
-
+document.getElementById("carro").style.backgroundColor ="red"
 
 
 
