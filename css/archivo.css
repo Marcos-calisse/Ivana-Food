@@ -45,5 +45,7 @@
     height: 2em; 
 }
 .btn-primary{
-    background-color: red;
+    background-color: yellow;
+    color: black;
+    border-color: none;
 }

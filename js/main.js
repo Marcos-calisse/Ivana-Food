@@ -43,15 +43,30 @@ const listaProductos = [
    precio: 250, 
    stock: 10,
    imagen: "http://c.files.bbci.co.uk/104B4/production/_103104766_gettyimages-957724442.jpg"
+  },
+  { id: 5, 
+    nombre: "Pizza Peperoni", 
+    precio: 950, 
+    stock: 10,
+    imagen: "https://www.saborusa.com/wp-content/uploads/2019/10/Animate-a-disfrutar-una-deliciosa-pizza-de-salchicha-Foto-destacada.png"
+  },
+  { id: 6, 
+    nombre: "Barroluco", 
+    precio: 1000, 
+    stock: 10,
+    imagen: "https://www.diariodecuyo.com.ar/export/sites/diariodecuyo/img/2021/02/05/barros_1.jpg"
   }
+
 ];
+
+
 
 // Funcion carrito de compras --> llamo la funcion desde el html
 
 
 const carritoDeCompras = () =>{
   const totalDelCarrito = listaProductos.reduce((acumulador, producto) => acumulador + producto.precio, 0);
-  carrito.innerHTML = totalDelCarrito
+  return carrito.innerHTML = `El total de su compra es ${totalDelCarrito}`
 }
 
 
@@ -116,7 +131,7 @@ function generarFormLogin (){
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" onclick = "validarUsuario()">Ingresar</button>
+        <button id="botonIngresar" type="button" class="btn btn-danger" onclick = "validarUsuario()">Ingresar</button>
       </div>
     </div>
   </div>
@@ -141,9 +156,7 @@ const validarUsuario = () => {
     }
 }
 
-document.getElementById("carro").style.backgroundColor ="red"
-
-
+document.getElementById("carro").style.backgroundColor ="yellow"
 
 
 
