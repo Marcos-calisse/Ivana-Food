@@ -1,8 +1,18 @@
+const actualizarStorage = (carrito) => {
+  localStorage.setItem("carro", JSON.stringify(carrito));
+};
+
 let pachatas = 600;
 let lomos = 800;
 let Hamburguesas = 400;
 
 const carrito = [];
+if (localStorage.getItem("carro")) {
+  carrito = JSON.parse(localStorage.getItem("carro"));
+  carritoDeCompras();
+}
+
+
 
 // Objeto constructor
 
@@ -63,19 +73,50 @@ const listaProductos = [
 
 // Funcion carrito de compras --> llamo la funcion desde el html
 
-
-const carritoDeCompras = () =>{
-  const totalDelCarrito = listaProductos.reduce((acumulador, producto) => acumulador + producto.precio, 0);
-  return carrito.innerHTML = `El total de su compra es ${totalDelCarrito}`
-}
+let modalCarrito = document.getElementById("carro");
+  
+const carritoDeCompras = () => {
+  let total = 0;
+  modalCarrito.innerHTML = "";
+  if (carrito.length > 0) {
+    carrito.forEach(() => {
+      total = total + listaProductos.precio;
+      modalCarrito.innerHTML = `<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <h6> ${listaProductos.nombre}</h6>
+            <h6> ${listaProductos.id}</h6>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>`;
+    });
+    // Dibujo el total y lo appendeo en el div capturado y guardado en la variable modalCarrito
+    const totalContainer = document.createElement("div");
+    totalContainer.className = "total-carrito";
+    totalContainer.innerHTML = `<div class= "total"> TOTAL $ ${total}</div>
+     <button class= "btn btn-danger finalizar" id="finalizar" onClick="finalizarCompra()"> FINALIZAR COMPRA </button>`;
+    modalCarrito.appendChild(totalContainer);
+  }
+  
+};
 
 
 // Funcion agregar porductos al carrito como lista de productos
 
-const agregarAlCarrito = (producto) =>{
-  carrito.push(producto)
+const agregarAlCarrito = () =>{
+  carrito.push(listaProductos.id)
 }
-
+console.log(carrito)
 // Funcion genedora de cards
 
 function generarCards(productos){
@@ -87,7 +128,7 @@ function generarCards(productos){
         <div class="card-body">
           <h5 class="card-title">${producto.nombre}</h5>
           <p class="card-text">$ ${producto.precio}</p>
-          <button class="btn btn-primary" onclick="agregarAlCarrito(() => {${producto.id}})">Comprar</button>
+          <button class="btn btn-primary" onclick="agregarAlCarrito(${producto.id})">Comprar</button>
         </div>
       </div>`;
     });
@@ -156,7 +197,6 @@ const validarUsuario = () => {
     }
 }
 
-document.getElementById("carro").style.backgroundColor ="yellow"
 
 
 

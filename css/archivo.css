@@ -7,6 +7,8 @@
 .mainIndex{
   margin-top: 25vh;
   height: 100%;
+  display: flex;
+  
 }
 
 .navIndex{
