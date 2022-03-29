@@ -7,6 +7,9 @@ let lomos = 800;
 let Hamburguesas = 400;
 
 const carrito = [];
+
+
+
 if (localStorage.getItem("carro")) {
   carrito = JSON.parse(localStorage.getItem("carro"));
   carritoDeCompras();
@@ -76,47 +79,19 @@ const listaProductos = [
 let modalCarrito = document.getElementById("carro");
   
 const carritoDeCompras = () => {
-  let total = 0;
-  modalCarrito.innerHTML = "";
-  if (carrito.length > 0) {
-    carrito.forEach(() => {
-      total = total + listaProductos.precio;
-      modalCarrito.innerHTML = `<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <h6> ${listaProductos.nombre}</h6>
-            <h6> ${listaProductos.id}</h6>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div>`;
-    });
-    // Dibujo el total y lo appendeo en el div capturado y guardado en la variable modalCarrito
-    const totalContainer = document.createElement("div");
-    totalContainer.className = "total-carrito";
-    totalContainer.innerHTML = `<div class= "total"> TOTAL $ ${total}</div>
-     <button class= "btn btn-danger finalizar" id="finalizar" onClick="finalizarCompra()"> FINALIZAR COMPRA </button>`;
-    modalCarrito.appendChild(totalContainer);
-  }
+  carrito.length === 0 ?  alert("El carrito esta vacío") : alert(carrito.length)
   
 };
-
+console.log(carrito)
 
 // Funcion agregar porductos al carrito como lista de productos
 
 const agregarAlCarrito = () =>{
-  carrito.push(listaProductos.id)
+  carrito.push(listaProductos[1])
 }
-console.log(carrito)
+
+
+
 // Funcion genedora de cards
 
 function generarCards(productos){
