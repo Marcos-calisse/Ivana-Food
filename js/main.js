@@ -1,8 +1,12 @@
+const storageCarrito = JSON.parse(localStorage.getItem("carrito"));
+const carrito = storageCarrito;
+document.getElementById("cantidad-producto").innerHTML = carrito.length;
+
 let pachatas = 600;
 let lomos = 800;
 let Hamburguesas = 400;
 
-const carrito = [];
+
 
 // array de productos
 
@@ -66,7 +70,7 @@ const carritoDeCompras = () => {
   
 };
 
-document.getElementById("cantidad-producto").innerHTML = carrito.length;
+
 
 
 // Funcion agregar porductos al carrito como lista de productos
@@ -78,7 +82,10 @@ const agregarAlCarrito = (indiceProducto) =>{
   });
   const productoAgregado = listaProductos[indiceEncontradoProducto]
   
-  carrito.push(productoAgregado)
+  carrito.push(productoAgregado);
+
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+
 }
 
 
