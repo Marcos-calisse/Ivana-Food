@@ -1,61 +1,35 @@
-const actualizarStorage = (carrito) => {
-  localStorage.setItem("carro", JSON.stringify(carrito));
-};
-
 let pachatas = 600;
 let lomos = 800;
 let Hamburguesas = 400;
 
 const carrito = [];
 
-
-
-if (localStorage.getItem("carro")) {
-  carrito = JSON.parse(localStorage.getItem("carro"));
-  carritoDeCompras();
-}
-
-
-
-// Objeto constructor
-
-// class Productos{
-//     constructor (id, nombre, precio, stock){
-//         this.id = id;
-//         this.nombre = nombre;
-//         this.precio = precio;
-//         this.stock = stock;
-//     }
-    
-// }
-
 // array de productos
 
-
 const listaProductos = [
-  {id: 1,
-   nombre: "Pachata", 
-   precio: 600, 
-   stock: 10,
-   imagen: "https://images.deliveryhero.io/image/pedidosya/products/16480133-07c02758-51e5-48bc-848a-958de32372f0.jpeg?quality=90&width=248"
+  { id: 1,
+    nombre: "Pachata", 
+    precio: 600, 
+    stock: 10,
+    imagen: "https://images.deliveryhero.io/image/pedidosya/products/16480133-07c02758-51e5-48bc-848a-958de32372f0.jpeg?quality=90&width=248"
   },
-  {id: 2, 
-   nombre: "Lomo", 
-   precio:800, 
-   stock: 10,
-   imagen: "https://www.circuitogastronomico.com/wp-content/uploads/2020/08/pizzar-lomo.jpg"
+  { id: 2, 
+    nombre: "Lomo", 
+    precio:800, 
+    stock: 10,
+    imagen: "https://www.circuitogastronomico.com/wp-content/uploads/2020/08/pizzar-lomo.jpg"
   },
-  {id: 3, 
-   nombre: "Hamburguesa", 
-   precio: 400, 
-   stock: 10,
-   imagen: "https://okdiario.com/img/2021/05/28/hamburguesa-3-655x368.jpg"
+  { id: 3, 
+    nombre: "Hamburguesa", 
+    precio: 400, 
+    stock: 10,
+    imagen: "https://okdiario.com/img/2021/05/28/hamburguesa-3-655x368.jpg"
   },
-  {id: 4, 
-   nombre: "Papas fritas", 
-   precio: 250, 
-   stock: 10,
-   imagen: "http://c.files.bbci.co.uk/104B4/production/_103104766_gettyimages-957724442.jpg"
+  { id: 4, 
+    nombre: "Papas fritas", 
+    precio: 250, 
+    stock: 10,
+    imagen: "http://c.files.bbci.co.uk/104B4/production/_103104766_gettyimages-957724442.jpg"
   },
   { id: 5, 
     nombre: "Pizza Peperoni", 
@@ -73,23 +47,39 @@ const listaProductos = [
 ];
 
 
-
 // Funcion carrito de compras --> llamo la funcion desde el html
 
-let modalCarrito = document.getElementById("carro");
-  
 const carritoDeCompras = () => {
-  carrito.length === 0 ?  alert("El carrito esta vacío") : alert(carrito.length)
+  
+  let productosEnCarrito = document.getElementById("productosAgregados");
+  carrito.forEach((elemento) => {
+    productosEnCarrito.innerHTML = `
+    <img class="car-img" src="${elemento.imagen}"/>
+    <div class="product-details">${elemento.nombre}</div>
+    <div class="product-details" >Cantidad:</div>
+    <div class="product-details">Precio: $${elemento.precio}</div>
+    <div class="product-details">Subtotal: $</div>
+    <button class="btn btn-danger"  id="remove-product">Eliminar producto ${elemento.id}</button>
+    `;
+  })
+  
   
 };
-console.log(carrito)
+
+document.getElementById("cantidad-producto").innerHTML = carrito.length;
+
 
 // Funcion agregar porductos al carrito como lista de productos
 
-const agregarAlCarrito = () =>{
-  carrito.push(listaProductos[1])
-}
+const agregarAlCarrito = (indiceProducto) =>{
 
+  const indiceEncontradoProducto = listaProductos.findIndex((elemento) => {
+    return elemento.id === listaProductos[indiceProducto].id;
+  });
+  const productoAgregado = listaProductos[indiceEncontradoProducto]
+  
+  carrito.push(productoAgregado)
+}
 
 
 // Funcion genedora de cards
@@ -113,7 +103,7 @@ function generarCards(productos){
 // Funcion mostrar cards
 
 function imprimirCardsEnHTML(cards){
-    document.getElementById("cards").innerHTML = cards ;
+  document.getElementById("cards").innerHTML = cards ;
 }
 
 generarCards(listaProductos);
@@ -123,36 +113,36 @@ generarCards(listaProductos);
 
 function generarFormLogin (){
   const datosUsuario = document.getElementById("login");
-  datosUsuario.innerHTML = `<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Login</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="mb-3">
-          <label>Nombre Usuario</label>
-          <input type="text" id="nombre" placeholder="Ingrese usuario">
-          </div>
-          <div class="mb-3">
-          <label>E-mail</label>
-          <input type="text" id="mail" placeholder="E-mail">
-          </div>
-          <div class="mb-3">
-            <label>Contraseña</label>
-            <input type="password" id="contraseña" placeholder="Contraseña">
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button id="botonIngresar" type="button" class="btn btn-danger" onclick = "validarUsuario()">Ingresar</button>
+  datosUsuario.innerHTML = `
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label>Nombre Usuario</label>
+              <input type="text" id="nombre" placeholder="Ingrese usuario">
+            </div>
+            <div class="mb-3">
+              <label>E-mail</label>
+              <input type="text" id="mail" placeholder="E-mail">
+            </div>
+            <div class="mb-3">
+              <label>Contraseña</label>
+              <input type="password" id="contraseña" placeholder="Contraseña">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button id="botonIngresar" type="button" class="btn btn-danger" onclick = "validarUsuario()">Ingresar</button>
+        </div>
       </div>
     </div>
-  </div>
- </div>
- `;
+  </div>`;
 }
 
 
@@ -171,7 +161,3 @@ const validarUsuario = () => {
         alert(`Vuelve a intentarlo`)
     }
 }
-
-
-
-
