@@ -160,11 +160,13 @@ const validarUsuario = () => {
     const email = document.getElementById("mail").value;
     const contrasenia = document.getElementById("contraseña").value;
     
-    if (nombreIngresado === "Marcos" && contrasenia === "12345" && email === "mcalisse@gmail.com" ){
-
-        alert(`Bienvenido ${nombreIngresado}`)
+    if (nombreIngresado === "Marcos" && contrasenia === 12345 && email === "mcalisse@gmail.com"){
+      
+    
+      swal(`Bienvenido ${nombreIngresado}`, "-haz click para ingresar!", "success")
+      
 
     }else{
-        alert(`Vuelve a intentarlo`)
+      swal(`Vuelve a intentarlo`)
     }
 }
