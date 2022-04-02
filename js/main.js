@@ -60,17 +60,22 @@ const carritoDeCompras = () => {
     productosEnCarrito.innerHTML = `
     <img class="car-img" src="${elemento.imagen}"/>
     <div class="product-details">${elemento.nombre}</div>
-    <div class="product-details" >Cantidad:</div>
+    <div class="product-details">
+      <input class="inputCarrito" value=1 min=1 type="number" placeholder="">
+    </div>
     <div class="product-details">Precio: $${elemento.precio}</div>
     <div class="product-details">Subtotal: $</div>
-    <button class="btn btn-danger"  id="remove-product">Eliminar producto ${elemento.id}</button>
+    <button class="btn btn-danger"  id="remove-product" onclick = "removeProduct(${elemento.id})">Eliminar producto</button>
     `;
-  })
-  
+  });
   
 };
 
-
+const removeProduct = (indice) => {
+  carrito.splice(indice, 1);
+  actualizarStorage(storageCarrito);
+  
+};
 
 
 // Funcion agregar porductos al carrito como lista de productos
@@ -88,6 +93,9 @@ const agregarAlCarrito = (indiceProducto) =>{
 
 }
 
+const actualizarStorage = (carrito) => {
+  localStorage.setItem("cartrito", JSON.stringify(carrito));
+};
 
 // Funcion genedora de cards
 

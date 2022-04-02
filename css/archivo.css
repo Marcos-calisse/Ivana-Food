@@ -58,3 +58,20 @@
 .card-img-top{
     height: 200px;
 }
+.product-details{
+    display: inline;
+    margin: 5px;
+}
+
+#productosAgregados{
+    width: 100em;
+}
+
+
+.inputCarrito{
+    width: 5rem;
+}
+
+.modal-content{
+    width: 150%
+}
