@@ -1,10 +1,5 @@
 const storageCarrito = JSON.parse(localStorage.getItem("carrito"));
 const carrito = storageCarrito;
-document.getElementById("cantidad-producto").innerHTML = carrito.length;
-
-let pachatas = 600;
-let lomos = 800;
-let Hamburguesas = 400;
 
 
 
@@ -57,6 +52,9 @@ const carritoDeCompras = () => {
   
   let productosEnCarrito = document.getElementById("productosAgregados");
   carrito.forEach((elemento) => {
+
+    const valorInputCarrito = document.getElementsByClassName("inputCarrito").value;
+    let subtotal = elemento.cantidad * elemento.precio;
     productosEnCarrito.innerHTML = `
     <img class="car-img" src="${elemento.imagen}"/>
     <div class="product-details">${elemento.nombre}</div>
@@ -64,9 +62,10 @@ const carritoDeCompras = () => {
       <input class="inputCarrito" value=1 min=1 type="number" placeholder="">
     </div>
     <div class="product-details">Precio: $${elemento.precio}</div>
-    <div class="product-details">Subtotal: $</div>
+    <div class="product-details">Subtotal: $${subtotal}</div>
     <button class="btn btn-danger"  id="remove-product" onclick = "removeProduct(${elemento.id})">Eliminar producto</button>
     `;
+    productoAgregado.cantidad = valorInputCarrito;
   });
   
 };
@@ -89,14 +88,17 @@ const agregarAlCarrito = (indiceProducto) =>{
   
   carrito.push(productoAgregado);
 
-  localStorage.setItem("carrito", JSON.stringify(carrito));
+  
 
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+  
 }
 
 const actualizarStorage = (carrito) => {
-  localStorage.setItem("cartrito", JSON.stringify(carrito));
+  localStorage.setItem("carrito", JSON.stringify(carrito));
 };
 
+document.getElementById("cantidad-producto").innerHTML = carrito.length;
 // Funcion genedora de cards
 
 function generarCards(productos){

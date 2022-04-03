@@ -12,7 +12,7 @@
 }
 
 .navIndex{
-    background-color: rgba(155, 252, 155, 0.377);
+    background-color: #00e676;
 }
 
 
@@ -32,7 +32,7 @@
 
 
 .footer {
-    background-color: rgba(155, 252, 155, 0.377);
+    background-color: #00e676;
     padding: 30px;
     text-align: center;
     width: 100%;
@@ -47,10 +47,11 @@
     height: 2em; 
 }
 .btn-primary{
-    background-color: yellow;
+    background-color: #b2ff59;
     color: black;
-    border-color: none;
+    border-color: black;
 }
+
 .car-img{
     width: 80px;
     height: 80px;
