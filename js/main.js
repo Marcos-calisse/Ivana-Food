@@ -54,7 +54,7 @@ const carritoDeCompras = () => {
   carrito.forEach((elemento) => {
 
     const valorInputCarrito = document.getElementsByClassName("inputCarrito").value;
-    let subtotal = elemento.cantidad * elemento.precio;
+    let subtotal = valorInputCarrito * elemento.precio;
     productosEnCarrito.innerHTML = `
     <img class="car-img" src="${elemento.imagen}"/>
     <div class="product-details">${elemento.nombre}</div>
@@ -65,7 +65,7 @@ const carritoDeCompras = () => {
     <div class="product-details">Subtotal: $${subtotal}</div>
     <button class="btn btn-danger"  id="remove-product" onclick = "removeProduct(${elemento.id})">Eliminar producto</button>
     `;
-    productoAgregado.cantidad = valorInputCarrito;
+    
   });
   
 };
@@ -98,7 +98,8 @@ const actualizarStorage = (carrito) => {
   localStorage.setItem("carrito", JSON.stringify(carrito));
 };
 
-document.getElementById("cantidad-producto").innerHTML = carrito.length;
+//document.getElementById("cantidad-producto").innerHTML = carrito.length;
+
 // Funcion genedora de cards
 
 function generarCards(productos){
