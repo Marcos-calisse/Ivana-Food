@@ -1,6 +1,6 @@
 const storageCarrito = JSON.parse(localStorage.getItem("carrito"));
-const carrito = [];
-
+const carrito = storageCarrito;
+document.getElementById("cantidad-producto").innerHTML = carrito.length;
 
 
 // array de productos
@@ -44,16 +44,24 @@ const listaProductos = [
   }
 
 ];
+// Funcion que remueve productos ddel carrito para
+
+const removeProduct = (indice) => {
+  carrito.splice(indice, 1);
+  actualizarStorage(storageCarrito);
+  mostrarProdEnCarrito();
+};
 
 
 // Funcion carrito de compras --> llamo la funcion desde el html
 
 const carritoDeCompras = () => {
   
-  let productosEnCarrito = document.getElementById("productosAgregados");
+  let acumuladorProductos = ``;
 
   carrito.forEach((elemento) => {
-    productosEnCarrito.innerHTML = `
+    
+    acumuladorProductos += `
     <img class="car-img" src="${elemento.imagen}"/>
     <div class="product-details">${elemento.nombre}</div>
     <div class="product-details">
@@ -65,14 +73,12 @@ const carritoDeCompras = () => {
     `;
     
   });
-  
+  mostrarProdEnCarrito(acumuladorProductos);
 };
 
-const removeProduct = (indice) => {
-  carrito.splice(indice, 1);
-  actualizarStorage(storageCarrito);
-  
-};
+function mostrarProdEnCarrito(arrayProductos){
+  document.getElementById("productosAgregados").innerHTML = arrayProductos;
+}
 
 
 // Funcion agregar porductos al carrito como lista de productos
@@ -80,7 +86,7 @@ const removeProduct = (indice) => {
 const agregarAlCarrito = (indiceProducto) =>{
 
   const indiceEncontradoProducto = listaProductos.findIndex((elemento) => {
-    return elemento.id === listaProductos[indiceProducto].id;
+    return elemento.id === indiceProducto;
   });
   const productoAgregado = listaProductos[indiceEncontradoProducto]
   
@@ -95,8 +101,11 @@ const agregarAlCarrito = (indiceProducto) =>{
 const actualizarStorage = (carrito) => {
   localStorage.setItem("carrito", JSON.stringify(carrito));
 };
-console.log(carrito)
-//document.getElementById("cantidad-producto").innerHTML = carrito.length;
+
+
+console.log(carrito);
+
+
 
 // Funcion genedora de cards
 
