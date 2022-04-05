@@ -51,10 +51,8 @@ const listaProductos = [
 const carritoDeCompras = () => {
   
   let productosEnCarrito = document.getElementById("productosAgregados");
-  carrito.forEach((elemento) => {
 
-    const valorInputCarrito = document.getElementsByClassName("inputCarrito").value;
-    let subtotal = valorInputCarrito * elemento.precio;
+  carrito.forEach((elemento) => {
     productosEnCarrito.innerHTML = `
     <img class="car-img" src="${elemento.imagen}"/>
     <div class="product-details">${elemento.nombre}</div>
@@ -62,7 +60,7 @@ const carritoDeCompras = () => {
       <input class="inputCarrito" value=1 min=1 type="number" placeholder="">
     </div>
     <div class="product-details">Precio: $${elemento.precio}</div>
-    <div class="product-details">Subtotal: $${subtotal}</div>
+    <div class="product-details">Subtotal: $</div>
     <button class="btn btn-danger"  id="remove-product" onclick = "removeProduct(${elemento.id})">Eliminar producto</button>
     `;
     
@@ -167,17 +165,10 @@ function generarFormLogin (){
 
 const validarUsuario = () => {
 
-    const nombreIngresado = document.getElementById("nombre").value;
-    const email = document.getElementById("mail").value;
-    const contrasenia = document.getElementById("contraseña").value;
-    
-    if (nombreIngresado === "Marcos" && contrasenia === 12345 && email === "mcalisse@gmail.com"){
-      
-    
-      swal(`Bienvenido ${nombreIngresado}`, "-haz click para ingresar!", "success")
-      
-
-    }else{
-      swal(`Vuelve a intentarlo`)
-    }
+  const nombreIngresado = document.getElementById("nombre").value;
+  const email = document.getElementById("mail").value;
+  const contrasenia = document.getElementById("contraseña").value;
+  
+  nombreIngresado == "Marcos" && contrasenia == 12345 && email == "mcalisse@gmail.com" ? swal(`Bienvenido ${nombreIngresado}`, "-haz click para ingresar!", "success") : swal(`Vuelve a intentarlo`);
+  
 }
