@@ -1,5 +1,5 @@
 const storageCarrito = JSON.parse(localStorage.getItem("carrito"));
-const carrito = storageCarrito;
+const carrito = [];
 
 
 
@@ -95,7 +95,7 @@ const agregarAlCarrito = (indiceProducto) =>{
 const actualizarStorage = (carrito) => {
   localStorage.setItem("carrito", JSON.stringify(carrito));
 };
-
+console.log(carrito)
 //document.getElementById("cantidad-producto").innerHTML = carrito.length;
 
 // Funcion genedora de cards
