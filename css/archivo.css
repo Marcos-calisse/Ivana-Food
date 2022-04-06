@@ -66,7 +66,7 @@
 }
 
 #productosAgregados{
-    width: 100em;
+    width: 150em;
 }
 
 
@@ -75,5 +75,9 @@
 }
 
 .modal-content{
-    width: 150%
+    width: 50rem;
+}
+.container{
+    display: block;
+    margin: 20px;
 }
