@@ -1,6 +1,6 @@
 const storageCarrito = JSON.parse(localStorage.getItem("carrito"));
 const carrito = storageCarrito;
-//document.getElementById("cantidad-producto").innerHTML = carrito.length;
+document.getElementById("cantidad-producto").innerHTML = carrito.length;
 
 
 // array de productos
@@ -47,9 +47,15 @@ const listaProductos = [
 // Funcion que remueve productos ddel carrito para
 
 const removeProduct = (indice) => {
-  carrito.splice(indice, 1);
-  actualizarStorage(storageCarrito);
-  mostrarProdEnCarrito();
+
+  const indiceProd = carrito.findIndex((elemento) => {
+    return elemento.id === indice;
+  });
+
+  carrito.splice(indiceProd, 1);
+
+  actualizarStorage(carrito);
+  
 };
 
 
@@ -75,8 +81,20 @@ const carritoDeCompras = () => {
     <div>`;
     
   });
+  
   mostrarProdEnCarrito(acumuladorProductos);
+
+  
+
 };
+
+const calcularTotalCarrito = () => {
+
+  const totalCarrito = carrito.reduce((accum, element) => accum + element.precio, 0);
+
+  document.getElementById("totalCarrito").append(`El total de tu compra es $${totalCarrito}`);
+  
+}
 
 function mostrarProdEnCarrito(arrayProductos){
   document.getElementById("productosAgregados").innerHTML = arrayProductos;
@@ -94,9 +112,9 @@ const agregarAlCarrito = (indiceProducto) =>{
   
   carrito.push(productoAgregado);
 
-  
-
   localStorage.setItem("carrito", JSON.stringify(carrito));
+
+  calcularTotalCarrito();
   
 }
 
