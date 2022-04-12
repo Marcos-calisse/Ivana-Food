@@ -49,12 +49,11 @@
     width: 2em;
     height: 2em; 
 }
-.btn-primary{
-    background-color: #b2ff59;
-    color: black;
-    border-color: black;
-}
 
+.btn-outline-success {
+    color: #198754;
+    border-color: #198754;
+}
 .car-img{
     width: 80px;
     height: 80px;

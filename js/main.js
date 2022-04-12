@@ -1,6 +1,6 @@
 const storageCarrito = JSON.parse(localStorage.getItem("carrito"));
 const carrito = storageCarrito;
-document.getElementById("cantidad-producto").innerHTML = carrito.length;
+
 
 
 // array de productos
@@ -68,23 +68,17 @@ const carritoDeCompras = () => {
   carrito.forEach((elemento) => {
     
     acumuladorProductos += `
-    <img class="car-img" src="${elemento.imagen}"/>
-    <div class="container"
-      
+    <div class="container">
+      <img class="car-img" src="${elemento.imagen}"/>
       <div class="product-details">${elemento.nombre}</div>
-      <div class="product-details">
-        <input class="inputCarrito" value=1 min=1 type="number" placeholder="">
-      </div>
       <div class="product-details">Precio: $${elemento.precio}</div>
       <div class="product-details">Subtotal: $</div>
       <button class="btn btn-danger"  id="remove-product" onclick = "removeProduct(${elemento.id})">Eliminar producto</button>
-    <div>`;
+    </div>`;
     
   });
   
   mostrarProdEnCarrito(acumuladorProductos);
-
-  
 
 };
 
@@ -108,9 +102,12 @@ const agregarAlCarrito = (indiceProducto) =>{
   const indiceEncontradoProducto = listaProductos.findIndex((elemento) => {
     return elemento.id === indiceProducto;
   });
+
   const productoAgregado = listaProductos[indiceEncontradoProducto]
   
   carrito.push(productoAgregado);
+  
+  document.getElementById("cantidad-producto").innerHTML = carrito.length;
 
   localStorage.setItem("carrito", JSON.stringify(carrito));
 
@@ -134,7 +131,10 @@ function generarCards(productos){
         <div class="card-body">
           <h5 class="card-title">${producto.nombre}</h5>
           <p class="card-text">$ ${producto.precio}</p>
-          <button class="btn btn-primary" onclick="agregarAlCarrito(${producto.id})">Comprar</button>
+          <div class="product-details">
+            <input class="inputCarrito" value=1 min=1 type="number" placeholder="">
+          </div>
+          <button class="btn btn-outline-success" onclick="agregarAlCarrito(${producto.id})">Comprar</button>
         </div>
       </div>`;
     });
