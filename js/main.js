@@ -4,46 +4,55 @@ const carrito = storageCarrito;
 
 
 // array de productos
+let productos = [];
 
-const listaProductos = [
-  { id: 1,
-    nombre: "Pachata", 
-    precio: 600, 
-    stock: 10,
-    imagen: "https://images.deliveryhero.io/image/pedidosya/products/16480133-07c02758-51e5-48bc-848a-958de32372f0.jpeg?quality=90&width=248"
-  },
-  { id: 2, 
-    nombre: "Lomo", 
-    precio:800, 
-    stock: 10,
-    imagen: "https://www.circuitogastronomico.com/wp-content/uploads/2020/08/pizzar-lomo.jpg"
-  },
-  { id: 3, 
-    nombre: "Hamburguesa", 
-    precio: 400, 
-    stock: 10,
-    imagen: "https://okdiario.com/img/2021/05/28/hamburguesa-3-655x368.jpg"
-  },
-  { id: 4, 
-    nombre: "Papas fritas", 
-    precio: 250, 
-    stock: 10,
-    imagen: "http://c.files.bbci.co.uk/104B4/production/_103104766_gettyimages-957724442.jpg"
-  },
-  { id: 5, 
-    nombre: "Pizza Peperoni", 
-    precio: 950, 
-    stock: 10,
-    imagen: "https://www.saborusa.com/wp-content/uploads/2019/10/Animate-a-disfrutar-una-deliciosa-pizza-de-salchicha-Foto-destacada.png"
-  },
-  { id: 6, 
-    nombre: "Barroluco", 
-    precio: 1000, 
-    stock: 10,
-    imagen: "https://www.diariodecuyo.com.ar/export/sites/diariodecuyo/img/2021/02/05/barros_1.jpg"
-  }
+fetch("/productos.json")
+.then((response) => response.json())
+.then((data) => {
+  productos = data;
+})
+productos.push(productos)
+console.log(productos)
 
-];
+// const listaProductos = [
+//   { id: 1,
+//     nombre: "Pachata", 
+//     precio: 600, 
+//     stock: 10,
+//     imagen: "https://images.deliveryhero.io/image/pedidosya/products/16480133-07c02758-51e5-48bc-848a-958de32372f0.jpeg?quality=90&width=248"
+//   },
+//   { id: 2, 
+//     nombre: "Lomo", 
+//     precio:800, 
+//     stock: 10,
+//     imagen: "https://www.circuitogastronomico.com/wp-content/uploads/2020/08/pizzar-lomo.jpg"
+//   },
+//   { id: 3, 
+//     nombre: "Hamburguesa", 
+//     precio: 400, 
+//     stock: 10,
+//     imagen: "https://okdiario.com/img/2021/05/28/hamburguesa-3-655x368.jpg"
+//   },
+//   { id: 4, 
+//     nombre: "Papas fritas", 
+//     precio: 250, 
+//     stock: 10,
+//     imagen: "http://c.files.bbci.co.uk/104B4/production/_103104766_gettyimages-957724442.jpg"
+//   },
+//   { id: 5, 
+//     nombre: "Pizza Peperoni", 
+//     precio: 950, 
+//     stock: 10,
+//     imagen: "https://www.saborusa.com/wp-content/uploads/2019/10/Animate-a-disfrutar-una-deliciosa-pizza-de-salchicha-Foto-destacada.png"
+//   },
+//   { id: 6, 
+//     nombre: "Barroluco", 
+//     precio: 1000, 
+//     stock: 10,
+//     imagen: "https://www.diariodecuyo.com.ar/export/sites/diariodecuyo/img/2021/02/05/barros_1.jpg"
+//   }
+
+// ];
 
 const actualizarStorage = (carrito) => {
   localStorage.setItem("carrito", JSON.stringify(carrito));
@@ -104,11 +113,11 @@ function mostrarProdEnCarrito(arrayProductos){
 
 const agregarAlCarrito = (indiceProducto) =>{
 
-  const indiceEncontradoProducto = listaProductos.findIndex((elemento) => {
+  const indiceEncontradoProducto = productos.findIndex((elemento) => {
     return elemento.id === indiceProducto;
   });
 
-  const productoAgregado = listaProductos[indiceEncontradoProducto]
+  const productoAgregado = productos[indiceEncontradoProducto]
   
   carrito.push(productoAgregado);
   
@@ -122,8 +131,12 @@ const agregarAlCarrito = (indiceProducto) =>{
 
 
 // Funcion genedora de cards
+fetch("/productos.json")
+.then((response) => response.json())
+.then((data) => imprimirCardsEnHTML(data))
 
 function generarCards(productos){
+  
     let acumuladorDeCards = ``;
     productos.forEach((producto)=>{
       acumuladorDeCards += `
@@ -148,7 +161,7 @@ function imprimirCardsEnHTML(cards){
   document.getElementById("cards").innerHTML = cards ;
 }
 
-generarCards(listaProductos);
+generarCards(productos);
 
 
 // Funcion login
