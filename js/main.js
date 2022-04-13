@@ -44,7 +44,12 @@ const listaProductos = [
   }
 
 ];
-// Funcion que remueve productos ddel carrito para
+
+const actualizarStorage = (carrito) => {
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+};
+
+// Funcion que remueve productos del carrito
 
 const removeProduct = (indice) => {
 
@@ -55,7 +60,7 @@ const removeProduct = (indice) => {
   carrito.splice(indiceProd, 1);
 
   actualizarStorage(carrito);
-  
+
 };
 
 
@@ -114,10 +119,6 @@ const agregarAlCarrito = (indiceProducto) =>{
   calcularTotalCarrito();
   
 }
-
-const actualizarStorage = (carrito) => {
-  localStorage.setItem("carrito", JSON.stringify(carrito));
-};
 
 
 // Funcion genedora de cards
