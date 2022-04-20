@@ -9,10 +9,10 @@ let productos = [];
 fetch("/productos.json")
 .then((response) => response.json())
 .then((data) => {
-  productos = data;
+  productos.push(data);
+  console.log(data)
 })
-productos.push(productos)
-console.log(productos)
+
 
 // const listaProductos = [
 //   { id: 1,
@@ -131,11 +131,8 @@ const agregarAlCarrito = (indiceProducto) =>{
 
 
 // Funcion genedora de cards
-fetch("/productos.json")
-.then((response) => response.json())
-.then((data) => imprimirCardsEnHTML(data))
 
-function generarCards(productos){
+function generarCards(){
   
     let acumuladorDeCards = ``;
     productos.forEach((producto)=>{
