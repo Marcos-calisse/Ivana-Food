@@ -4,55 +4,56 @@ const carrito = storageCarrito;
 
 
 // array de productos
-let productos = [];
 
-fetch("/productos.json")
-.then((response) => response.json())
-.then((data) => {
-  productos.push(data);
-  console.log(data)
-})
+//let productos = [];
+
+// fetch("/productos.json")
+// .then((response) => response.json())
+// .then((data) => {
+//   productos.push(data);
+//   console.log(data)
+// })
 
 
-// const listaProductos = [
-//   { id: 1,
-//     nombre: "Pachata", 
-//     precio: 600, 
-//     stock: 10,
-//     imagen: "https://images.deliveryhero.io/image/pedidosya/products/16480133-07c02758-51e5-48bc-848a-958de32372f0.jpeg?quality=90&width=248"
-//   },
-//   { id: 2, 
-//     nombre: "Lomo", 
-//     precio:800, 
-//     stock: 10,
-//     imagen: "https://www.circuitogastronomico.com/wp-content/uploads/2020/08/pizzar-lomo.jpg"
-//   },
-//   { id: 3, 
-//     nombre: "Hamburguesa", 
-//     precio: 400, 
-//     stock: 10,
-//     imagen: "https://okdiario.com/img/2021/05/28/hamburguesa-3-655x368.jpg"
-//   },
-//   { id: 4, 
-//     nombre: "Papas fritas", 
-//     precio: 250, 
-//     stock: 10,
-//     imagen: "http://c.files.bbci.co.uk/104B4/production/_103104766_gettyimages-957724442.jpg"
-//   },
-//   { id: 5, 
-//     nombre: "Pizza Peperoni", 
-//     precio: 950, 
-//     stock: 10,
-//     imagen: "https://www.saborusa.com/wp-content/uploads/2019/10/Animate-a-disfrutar-una-deliciosa-pizza-de-salchicha-Foto-destacada.png"
-//   },
-//   { id: 6, 
-//     nombre: "Barroluco", 
-//     precio: 1000, 
-//     stock: 10,
-//     imagen: "https://www.diariodecuyo.com.ar/export/sites/diariodecuyo/img/2021/02/05/barros_1.jpg"
-//   }
+const listaProductos = [
+  { id: 1,
+    nombre: "Pachata", 
+    precio: 600, 
+    stock: 10,
+    imagen: "https://images.deliveryhero.io/image/pedidosya/products/16480133-07c02758-51e5-48bc-848a-958de32372f0.jpeg?quality=90&width=248"
+  },
+  { id: 2, 
+    nombre: "Lomo", 
+    precio:800, 
+    stock: 10,
+    imagen: "https://www.circuitogastronomico.com/wp-content/uploads/2020/08/pizzar-lomo.jpg"
+  },
+  { id: 3, 
+    nombre: "Hamburguesa", 
+    precio: 400, 
+    stock: 10,
+    imagen: "https://okdiario.com/img/2021/05/28/hamburguesa-3-655x368.jpg"
+  },
+  { id: 4, 
+    nombre: "Papas fritas", 
+    precio: 250, 
+    stock: 10,
+    imagen: "http://c.files.bbci.co.uk/104B4/production/_103104766_gettyimages-957724442.jpg"
+  },
+  { id: 5, 
+    nombre: "Pizza Peperoni", 
+    precio: 950, 
+    stock: 10,
+    imagen: "https://www.saborusa.com/wp-content/uploads/2019/10/Animate-a-disfrutar-una-deliciosa-pizza-de-salchicha-Foto-destacada.png"
+  },
+  { id: 6, 
+    nombre: "Barroluco", 
+    precio: 1000, 
+    stock: 10,
+    imagen: "https://www.diariodecuyo.com.ar/export/sites/diariodecuyo/img/2021/02/05/barros_1.jpg"
+  }
 
-// ];
+];
 
 const actualizarStorage = (carrito) => {
   localStorage.setItem("carrito", JSON.stringify(carrito));
@@ -100,7 +101,7 @@ const calcularTotalCarrito = () => {
 
   const totalCarrito = carrito.reduce((accum, element) => accum + element.precio, 0);
 
-  document.getElementById("totalCarrito").append(`El total de tu compra es $${totalCarrito}`);
+  document.getElementById("totalCarrito").innerHTML = `El total de tu compra es $${totalCarrito}`;
   
 }
 
@@ -113,20 +114,27 @@ function mostrarProdEnCarrito(arrayProductos){
 
 const agregarAlCarrito = (indiceProducto) =>{
 
-  const indiceEncontradoProducto = productos.findIndex((elemento) => {
+  const indiceEncontradoProducto = listaProductos.findIndex((elemento) => {
     return elemento.id === indiceProducto;
   });
 
-  const productoAgregado = productos[indiceEncontradoProducto]
+  const productoAgregado = listaProductos[indiceEncontradoProducto]
   
   carrito.push(productoAgregado);
-  
-  document.getElementById("cantidad-producto").innerHTML = carrito.length;
 
   localStorage.setItem("carrito", JSON.stringify(carrito));
 
-  calcularTotalCarrito();
+  Toastify({
+    text: `Agregaste al carrito ${productoAgregado.nombre}`,
+    className: "info",
+    style: {
+      background: "linear-gradient(to right, #00b09b, #96c93d)",
+    }
+  }).showToast();
   
+  document.getElementById("cantidad-producto").innerHTML = carrito.length;
+
+  calcularTotalCarrito();
 }
 
 
@@ -135,7 +143,7 @@ const agregarAlCarrito = (indiceProducto) =>{
 function generarCards(){
   
     let acumuladorDeCards = ``;
-    productos.forEach((producto)=>{
+    listaProductos.forEach((producto)=>{
       acumuladorDeCards += `
       <div class="card" style="width: 18rem;">
         <img src="${producto.imagen}" class="card-img-top" alt="...">
@@ -145,6 +153,7 @@ function generarCards(){
           <div class="product-details">
             <input class="inputCarrito" value=1 min=1 type="number" placeholder="">
           </div>
+          <button class="btn btn-outline-success">Ver mas</button>
           <button class="btn btn-outline-success" onclick="agregarAlCarrito(${producto.id})">Comprar</button>
         </div>
       </div>`;
@@ -158,7 +167,7 @@ function imprimirCardsEnHTML(cards){
   document.getElementById("cards").innerHTML = cards ;
 }
 
-generarCards(productos);
+generarCards(listaProductos);
 
 
 // Funcion login
