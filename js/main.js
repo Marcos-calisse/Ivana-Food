@@ -1,6 +1,6 @@
-const storageCarrito = JSON.parse(localStorage.getItem("carrito"));
-const carrito = storageCarrito;
-
+// const storageCarrito = JSON.parse(localStorage.getItem("carrito"));
+// const carrito = storageCarrito;
+// document.getElementById("cantidad-producto").innerHTML = carrito.length;
 
 
 // array de productos
@@ -131,8 +131,9 @@ const agregarAlCarrito = (indiceProducto) =>{
       background: "linear-gradient(to right, #00b09b, #96c93d)",
     }
   }).showToast();
-  
+
   document.getElementById("cantidad-producto").innerHTML = carrito.length;
+  
 
   calcularTotalCarrito();
 }
