@@ -1,10 +1,3 @@
-// const storageCarrito = JSON.parse(localStorage.getItem("carrito"));
-// const carrito = storageCarrito;
-// document.getElementById("cantidad-producto").innerHTML = carrito.length;
-
-
-// array de productos
-
 //let productos = [];
 
 // fetch("/productos.json")
@@ -15,6 +8,7 @@
 // })
 
 
+// array de productos
 const listaProductos = [
   { id: 1,
     nombre: "Pachata", 
@@ -138,6 +132,17 @@ const agregarAlCarrito = (indiceProducto) =>{
   calcularTotalCarrito();
 }
 
+const irAlDetalleProducto = (indiceProducto) =>{
+
+  const indiceEncontradoProducto = listaProductos.findIndex((elemento) => {
+    return elemento.id === indiceProducto;
+  });
+  const productoEncontrado = listaProductos[indiceEncontradoProducto];
+
+  localStorage.setItem("productoSeleccionado", JSON.stringify(productoEncontrado));
+  console.log(productoEncontrado)
+}
+
 
 // Funcion genedora de cards
 
@@ -154,7 +159,7 @@ function generarCards(){
           <div class="product-details">
             <input class="inputCarrito" value=1 min=1 type="number" placeholder="">
           </div>
-          <button class="btn btn-outline-success">Ver mas</button>
+          <button class="btn btn-outline-success" onclick="irAlDetalleProducto(${producto.id})">Ver mas</button>
           <button class="btn btn-outline-success" onclick="agregarAlCarrito(${producto.id})">Comprar</button>
         </div>
       </div>`;
