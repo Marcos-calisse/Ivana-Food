@@ -1,12 +1,3 @@
-//let productos = [];
-
-// fetch("/productos.json")
-// .then((response) => response.json())
-// .then((data) => {
-//   productos.push(data);
-//   console.log(data)
-// })
-
 
 // array de productos
 const listaProductos = [
@@ -71,10 +62,15 @@ const removeProduct = (indice) => {
 // Funcion carrito de compras --> llamo la funcion desde el html
 
 const carritoDeCompras = () => {
-  
-  let acumuladorProductos = ``;
 
-  carrito.forEach((elemento) => {
+  if(carrito == ""){
+
+    document.getElementById("productosAgregados").innerHTML = `"Tu carrito esta vacío"`;
+
+  }else{
+    let acumuladorProductos = ``;
+
+    carrito.forEach((elemento) => {
     
     acumuladorProductos += `
     <div class="container">
@@ -85,12 +81,18 @@ const carritoDeCompras = () => {
       <button class="btn btn-danger"  id="remove-product" onclick = "removeProduct(${elemento.id})">Eliminar producto</button>
     </div>`;
     
-  });
+    });
   
-  mostrarProdEnCarrito(acumuladorProductos);
+    actualizarStorage(carrito);
+
+    mostrarProdEnCarrito(acumuladorProductos);
+  }
+  
+  
 
 };
 
+// Funcion que calcula el total del carrito
 const calcularTotalCarrito = () => {
 
   const totalCarrito = carrito.reduce((accum, element) => accum + element.precio, 0);
@@ -99,12 +101,14 @@ const calcularTotalCarrito = () => {
   
 }
 
+//Funcion que muestra los productos en el carrito
+
 function mostrarProdEnCarrito(arrayProductos){
   document.getElementById("productosAgregados").innerHTML = arrayProductos;
 }
 
 
-// Funcion agregar porductos al carrito como lista de productos
+// Funcion agregar productos al carrito
 
 const agregarAlCarrito = (indiceProducto) =>{
 
@@ -132,6 +136,8 @@ const agregarAlCarrito = (indiceProducto) =>{
   calcularTotalCarrito();
 }
 
+// funcion que te lleva al detalle del producto
+
 const irAlDetalleProducto = (indiceProducto) =>{
 
   const indiceEncontradoProducto = listaProductos.findIndex((elemento) => {
@@ -140,7 +146,7 @@ const irAlDetalleProducto = (indiceProducto) =>{
   const productoEncontrado = listaProductos[indiceEncontradoProducto];
 
   localStorage.setItem("productoSeleccionado", JSON.stringify(productoEncontrado));
-  console.log(productoEncontrado)
+  
 }
 
 
@@ -156,10 +162,12 @@ function generarCards(){
         <div class="card-body">
           <h5 class="card-title">${producto.nombre}</h5>
           <p class="card-text">$ ${producto.precio}</p>
-          <div class="product-details">
+          <div>
             <input class="inputCarrito" value=1 min=1 type="number" placeholder="">
           </div>
-          <button class="btn btn-outline-success" onclick="irAlDetalleProducto(${producto.id})">Ver mas</button>
+          <a href = "./detalleProducto.html" class="btn btn-outline-success" onclick="irAlDetalleProducto(${producto.id})">
+            Ver mas
+          </a>
           <button class="btn btn-outline-success" onclick="agregarAlCarrito(${producto.id})">Comprar</button>
         </div>
       </div>`;
@@ -167,7 +175,7 @@ function generarCards(){
     imprimirCardsEnHTML(acumuladorDeCards)
 }
 
-// Funcion mostrar cards
+// Funcion que muestra las cards en el html
 
 function imprimirCardsEnHTML(cards){
   document.getElementById("cards").innerHTML = cards ;
@@ -177,6 +185,16 @@ generarCards(listaProductos);
 
 
 // Funcion login
+
+const validarUsuario = () => {
+
+  const nombreIngresado = document.getElementById("nombre").value;
+  const email = document.getElementById("mail").value;
+  const contrasenia = document.getElementById("contraseña").value;
+  
+  nombreIngresado == "Marcos" && contrasenia == 12345 && email == "mcalisse@gmail.com" ? swal(`Bienvenido ${nombreIngresado}`, "-haz click para ingresar!", "success") : swal(`Vuelve a intentarlo`);
+  
+}
 
 function generarFormLogin (){
   const datosUsuario = document.getElementById("login");
@@ -214,12 +232,4 @@ function generarFormLogin (){
 
 
 
-const validarUsuario = () => {
 
-  const nombreIngresado = document.getElementById("nombre").value;
-  const email = document.getElementById("mail").value;
-  const contrasenia = document.getElementById("contraseña").value;
-  
-  nombreIngresado == "Marcos" && contrasenia == 12345 && email == "mcalisse@gmail.com" ? swal(`Bienvenido ${nombreIngresado}`, "-haz click para ingresar!", "success") : swal(`Vuelve a intentarlo`);
-  
-}

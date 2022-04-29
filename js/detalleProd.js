@@ -1,13 +1,30 @@
 const detalleProducto = JSON.parse(localStorage.getItem("productoSeleccionado"));
-console.log(detalleProducto)
 
-let idProducto = document.getElementById("idProd") .innerHTML = `ID producto: ${detalleProducto.id}`;
-console.log(idProducto)
+let productSelect = ``;
 
-let precioProducto = document.getElementById("precioProd") .innerHTML = `$ ${detalleProducto.precio}`;
-console.log(precioProducto)
+productSelect = `<div class="container px-4 px-lg-5 my-5">
+<div class="row gx-4 gx-lg-5 align-items-center">
+    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="${detalleProducto.imagen}" alt="..." /></div>
+    <div class="col-md-6">
+        <div class="small mb-1" id="idProd">ID producto: ${detalleProducto.id}</div>
+        <h1 class="display-5 fw-bolder" id="tituloProd">${detalleProducto.nombre}</h1>
+        <div class="fs-5 mb-5">
+            <span id="precioProd">$${detalleProducto.precio}</span>
+        </div>
+        <p class="lead"></p>
+        <div class="d-flex">
+            <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
+            <button class="btn btn-outline-success flex-shrink-0" type="button">
+                <i class="bi-cart-fill me-1"></i>
+                Comprar
+            </button>
+        </div>
+    </div>
+</div>
+</div>`
 
-let nombreProducto = document.getElementById("tituloProd") .innerHTML = detalleProducto.nombre;
-console.log(nombreProducto)
+function imprimirCard () {
+    document.getElementById("contenderCard").innerHTML = productSelect;
+}
 
-let imgenproducto = document.getElementById("imgProd") .innerHTML = detalleProducto.imagen;
+imprimirCard()
