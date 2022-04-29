@@ -1,4 +1,3 @@
-
 // array de productos
 const listaProductos = [
   { id: 1,
@@ -54,7 +53,11 @@ const removeProduct = (indice) => {
 
   carrito.splice(indiceProd, 1);
 
+  carritoDeCompras();
+
   actualizarStorage(carrito);
+
+  calcularTotalCarrito()
 
 };
 
@@ -186,6 +189,7 @@ generarCards(listaProductos);
 
 // Funcion login
 
+
 const validarUsuario = () => {
 
   const nombreIngresado = document.getElementById("nombre").value;
@@ -193,7 +197,7 @@ const validarUsuario = () => {
   const contrasenia = document.getElementById("contraseña").value;
   
   nombreIngresado == "Marcos" && contrasenia == 12345 && email == "mcalisse@gmail.com" ? swal(`Bienvenido ${nombreIngresado}`, "-haz click para ingresar!", "success") : swal(`Vuelve a intentarlo`);
-  
+ 
 }
 
 function generarFormLogin (){
@@ -207,20 +211,20 @@ function generarFormLogin (){
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form>
+          <div>
             <div class="mb-3">
               <label>Nombre Usuario</label>
-              <input type="text" id="nombre" placeholder="Ingrese usuario">
+              <input type="text" placeholder="Ingrese usuario" id="nombre">
             </div>
             <div class="mb-3">
               <label>E-mail</label>
-              <input type="text" id="mail" placeholder="E-mail">
+              <input type="text" placeholder="E-mail" id="mail">
             </div>
             <div class="mb-3">
               <label>Contraseña</label>
-              <input type="password" id="contraseña" placeholder="Contraseña">
+              <input type="password" placeholder="Contraseña" id="contraseña">
             </div>
-          </form>
+          </div>
         </div>
         <div class="modal-footer">
           <button id="botonIngresar" type="button" class="btn btn-danger" onclick = "validarUsuario()">Ingresar</button>
