@@ -11,13 +11,12 @@ productSelect = `<div class="container px-4 px-lg-5 my-5">
         <div class="fs-5 mb-5">
             <span id="precioProd">$${detalleProducto.precio}</span>
         </div>
-        <p class="lead"></p>
+        <p class="lead">Detalle de cada porducto</p>
         <div class="d-flex">
-            <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-            <button class="btn btn-outline-success flex-shrink-0" type="button">
+            <a href="./index.html" class="btn btn-outline-success flex-shrink-0" type="button">
                 <i class="bi-cart-fill me-1"></i>
-                Comprar
-            </button>
+                <- Atras
+            </a>
         </div>
     </div>
 </div>
